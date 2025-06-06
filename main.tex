@@ -1,0 +1,77 @@
+\documentclass[12pt, a4paper]{report}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Code listing settings
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% Document Info
+\title{
+    \includegraphics[height=5cm]{assets/NNU_Logo.png} \\[1cm]
+    \includegraphics[height=2.5cm]{assets/Tinker_Blocks_Logo.png} \\[1cm]
+    TinkerBlocks: Code, build, and drive!
+}
+\author{
+    Amr Badran \\
+    Izzat Alsharif
+    \\\\
+    \textbf{Supervisor:} Dr. Ashraf Armoush
+}
+\date{June 10, 2025}
+
+\begin{document}
+
+% Front matter
+\maketitle
+\tableofcontents
+\listoffigures
+
+% Abstract
+\begin{abstract}
+
+\end{abstract}
+
+
+\bibliographystyle{IEEEtran}
+\renewcommand{\bibname}{References}
+
+\bibliography{references}
+
+
+\end{document}
