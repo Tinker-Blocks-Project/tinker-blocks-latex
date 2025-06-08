@@ -1,0 +1,522 @@
+\chapter{SYSTEM SPECIFICATIONS AND HARDWARE DETAILS}
+
+\section{Hardware Component Specifications}
+
+\subsection{Robotic Car Components}
+
+\subsubsection{Microcontrollers and Processing}
+
+\begin{table}[H]
+\centering
+\caption{Microcontroller Specifications}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Component} & \textbf{Arduino Mega 2560} & \textbf{ESP32 DevKit V1} \\
+\hline
+Microcontroller & ATmega2560 & ESP32-WROOM-32 \\
+Operating Voltage & 5V & 3.3V \\
+Input Voltage & 7-12V & 7-12V \\
+Digital I/O Pins & 54 & 30 \\
+Analog Input Pins & 16 & 18 \\
+PWM Pins & 15 & 16 \\
+Flash Memory & 256 KB & 4 MB \\
+SRAM & 8 KB & 520 KB \\
+EEPROM & 4 KB & - \\
+Clock Speed & 16 MHz & 240 MHz \\
+WiFi & No & 802.11 b/g/n \\
+Bluetooth & No & v4.2 BR/EDR and BLE \\
+\hline
+\end{tabular}
+\label{tab:microcontrollers}
+\end{table}
+
+\subsubsection{Motors and Actuators}
+
+\begin{table}[H]
+\centering
+\caption{Motor and Actuator Specifications}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Component} & \textbf{DC Motors (4x)} & \textbf{Servo Motor} & \textbf{H-Bridge (2x)} \\
+\hline
+Model & TT Motor & SG90 & L298N \\
+Voltage & 3-6V & 4.8-6V & 5-35V \\
+Current & 200mA & 100-250mA & 2A per channel \\
+Speed & 200 RPM & 60°/0.1s & - \\
+Torque & 0.8 kg⋅cm & 1.8 kg⋅cm & - \\
+Control Method & PWM & PWM & PWM \\
+Gear Ratio & 48:1 & - & - \\
+\hline
+\end{tabular}
+\label{tab:motors}
+\end{table}
+
+\subsubsection{Sensors}
+
+\begin{table}[H]
+\centering
+\caption{Sensor Specifications}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Sensor} & \textbf{MPU-6050} & \textbf{HC-SR04} & \textbf{IR Sensors (2x)} \\
+\hline
+Type & 6-axis IMU & Ultrasonic & Infrared \\
+Operating Voltage & 3.3-5V & 5V & 3.3-5V \\
+Current & 3.9mA & 15mA & 20mA \\
+Measurement Range & ±16g, ±2000°/s & 2-400cm & 2-30cm \\
+Accuracy & 16-bit & ±3mm & ±1cm \\
+Update Rate & 1000Hz & 40Hz & 100Hz \\
+Interface & I2C & Digital & Digital \\
+Operating Temp & -40°C to +85°C & -15°C to +70°C & -25°C to +80°C \\
+\hline
+\end{tabular}
+\label{tab:sensors}
+\end{table}
+
+\subsubsection{Power System}
+
+\begin{table}[H]
+\centering
+\caption{Power System Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\
+\hline
+Battery Type & Lithium-ion 18650 \\
+Battery Quantity & 3 cells \\
+Nominal Voltage & 3.7V per cell (11.1V total) \\
+Capacity & 2500mAh per cell \\
+Discharge Rate & 2C continuous \\
+Protection Circuit & Built-in BMS \\
+Voltage Regulator & LM2596 Step-down \\
+Output Voltage & 5V ± 0.1V \\
+Output Current & 3A maximum \\
+Efficiency & 92\% typical \\
+Operating Time & 2-3 hours continuous \\
+Charging Time & 4-5 hours \\
+\hline
+\end{tabular}
+\label{tab:power}
+\end{table}
+
+\subsection{Control Station Components}
+
+\subsubsection{Raspberry Pi System}
+
+\begin{table}[H]
+\centering
+\caption{Raspberry Pi 4 Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Feature} & \textbf{Specification} \\
+\hline
+Processor & Broadcom BCM2711, Quad-core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz \\
+Memory & 4GB LPDDR4-3200 SDRAM \\
+Storage & 32GB microSD Class 10 \\
+Connectivity & 2.4 GHz and 5.0 GHz IEEE 802.11ac wireless \\
+& Bluetooth 5.0, BLE \\
+& Gigabit Ethernet \\
+USB Ports & 2 USB 3.0 ports, 2 USB 2.0 ports \\
+Display & 2 × micro-HDMI ports (up to 4Kp60 supported) \\
+Camera & CSI camera port \\
+GPIO & 40-pin GPIO header \\
+Power & 5V DC via USB-C connector (minimum 3A) \\
+Operating Temp & 0°C to +50°C \\
+\hline
+\end{tabular}
+\label{tab:rpi}
+\end{table}
+
+\subsubsection{Camera System}
+
+\begin{table}[H]
+\centering
+\caption{Camera System Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Feature} & \textbf{Specification} \\
+\hline
+Sensor Type & Sony IMX219 8-megapixel \\
+Resolution & 3280 × 2464 pixels (still), 1920 × 1080 (video) \\
+Lens & f/2.9, fixed focus \\
+Field of View & 62.2° × 48.8° \\
+Frame Rate & 30fps @ 1080p, 90fps @ 720p \\
+Interface & CSI-2 serial interface \\
+Mounting & Overhead adjustable mount \\
+Lighting & LED ring light (optional) \\
+Focus Range & 1m to infinity \\
+Cable Length & 1m flexible ribbon cable \\
+\hline
+\end{tabular}
+\label{tab:camera}
+\end{table}
+
+\subsubsection{User Interface Components}
+
+\begin{table}[H]
+\centering
+\caption{User Interface Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\
+\hline
+LCD Display & 16×2 Character LCD with I2C backpack \\
+Display Size & 2.6" × 1.2" viewing area \\
+Backlight & Blue LED backlight \\
+Character Size & 5×8 dots with cursor \\
+Operating Voltage & 5V \\
+Interface & I2C (SDA/SCL) \\
+Buttons & 4× tactile push buttons \\
+Button Type & Momentary contact, normally open \\
+Button Rating & 12V, 50mA \\
+Joystick & 2-axis analog joystick with center button \\
+Joystick Range & 0-1023 (10-bit ADC) \\
+\hline
+\end{tabular}
+\label{tab:ui}
+\end{table}
+
+\section{Software Dependencies and Versions}
+
+\subsection{Raspberry Pi Software Stack}
+
+\begin{table}[H]
+\centering
+\caption{Python Dependencies and Versions}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Package} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+Python & 3.13+ & Core programming language \\
+OpenCV & 4.8.0+ & Computer vision and image processing \\
+EasyOCR & 1.7.0+ & Optical character recognition \\
+NumPy & 1.24.0+ & Numerical computation \\
+Pydantic & 2.5.0+ & Data validation and configuration \\
+WebSockets & 12.0+ & Real-time communication \\
+Asyncio & Built-in & Asynchronous programming \\
+Poetry & 1.6.0+ & Dependency management \\
+Pytest & 7.4.0+ & Testing framework \\
+Tabulate & 0.9.0+ & Grid visualization \\
+\hline
+\end{tabular}
+\label{tab:python_deps}
+\end{table}
+
+\subsection{Arduino Libraries}
+
+\begin{table}[H]
+\centering
+\caption{Arduino Library Dependencies}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+Arduino Core & 1.8.19+ & Core Arduino framework \\
+MPU6050 & 0.6.0+ & Gyroscope/accelerometer interface \\
+Servo & 1.1.8+ & Servo motor control \\
+NewPing & 1.9.7+ & Ultrasonic sensor library \\
+ArduinoJson & 6.21.0+ & JSON parsing and generation \\
+WiFi & Built-in & WiFi connectivity (ESP32) \\
+WebServer & Built-in & HTTP server (ESP32) \\
+SoftwareSerial & Built-in & Additional serial ports \\
+\hline
+\end{tabular}
+\label{tab:arduino_libs}
+\end{table}>
+
+\section{Mechanical Design Specifications}
+
+\subsection{Chassis Dimensions}
+
+\begin{table}[H]
+\centering
+\caption{Chassis Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Dimension} & \textbf{Measurement} \\
+\hline
+Length & 200mm \\
+Width & 100mm \\
+Height & 85mm (without camera mount) \\
+Weight & 450g (without batteries) \\
+Material & 6mm plywood \\
+Wheel Diameter & 65mm \\
+Wheel Width & 26mm \\
+Wheelbase & 150mm \\
+Track Width & 85mm \\
+Ground Clearance & 15mm \\
+Center of Gravity & 75mm from front, 42mm from ground \\
+\hline
+\end{tabular}
+\label{tab:chassis}
+\end{table}
+
+\subsection{Programming Grid Specifications}
+
+\begin{table}[H]
+\centering
+\caption{Programming Grid Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Feature} & \textbf{Specification} \\
+\hline
+Grid Size & 16 columns × 10 rows \\
+Total Cells & 160 cells \\
+Cell Size & 35mm × 35mm \\
+Grid Dimensions & 560mm × 350mm \\
+Border Width & 20mm \\
+Total Board Size & 600mm × 390mm \\
+Material & 10mm MDF with laminate surface \\
+Grid Lines & 2mm black printed lines \\
+Cell Numbering & Optional alphanumeric labels \\
+Corner Markers & High-contrast reference points \\
+Mounting & Adjustable camera mount included \\
+\hline
+\end{tabular}
+\label{tab:grid}
+\end{table}
+
+\subsection{Programming Block Specifications}
+
+\begin{table}[H]
+\centering
+\caption{Programming Block Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Feature} & \textbf{Specification} \\
+\hline
+Block Size & 32mm × 32mm × 8mm \\
+Material & PLA plastic (3D printed) \\
+Text Height & 6mm \\
+Font & Arial Bold, sans-serif \\
+Text Color & Black on white background \\
+Magnetic Base & Optional 5mm × 1mm neodymium magnets \\
+Corner Radius & 2mm \\
+Surface Finish & Matte white \\
+Total Block Count & 120+ blocks \\
+Command Types & 25+ different command blocks \\
+Parameter Blocks & Numbers 0-99, operators, directions \\
+\hline
+\end{tabular}
+\label{tab:blocks}
+\end{table}>
+
+\section{Performance Specifications}
+
+\subsection{System Performance Requirements}
+
+\begin{table}[H]
+\centering
+\caption{Performance Requirements and Achieved Results}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Metric} & \textbf{Requirement} & \textbf{Achieved} \\
+\hline
+Block Recognition Accuracy & >90\% & 94.1\% (normal lighting) \\
+Movement Precision & ±2cm & ±1cm \\
+Rotation Accuracy & ±5° & ±2° \\
+End-to-end Latency & <5s & 2.3s average \\
+System Uptime & >95\% & 99.3\% \\
+Battery Life & >2 hours & 2.5-3 hours \\
+Recognition Processing & <3s & 1.8s average \\
+Command Execution & <1s & 0.2s average \\
+Communication Success & >95\% & 99.2\% \\
+Maximum Program Size & 100+ commands & 200+ commands \\
+\hline
+\end{tabular}
+\label{tab:performance}
+\end{table}
+
+\subsection{Environmental Operating Conditions}
+
+\begin{table}[H]
+\centering
+\caption{Environmental Specifications}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Operating Range} & \textbf{Optimal Range} \\
+\hline
+Temperature & 15°C to 35°C & 20°C to 25°C \\
+Humidity & 30\% to 70\% RH & 45\% to 55\% RH \\
+Lighting & 150 to 1000 lux & 400 to 600 lux \\
+Surface Type & Smooth, low-friction & Laminated wood/plastic \\
+Surface Slope & 0° to 5° & 0° to 2° \\
+Ambient Noise & <80 dB & <60 dB \\
+WiFi Signal & -70 dBm minimum & -50 dBm optimal \\
+Vibration & Minimal & None \\
+\hline
+\end{tabular}
+\label{tab:environment}
+\end{table}
+
+\section{Communication Protocols}
+
+\subsection{Serial Communication Parameters}
+
+\begin{table}[H]
+\centering
+\caption{Serial Communication Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Baud Rate & 115200 bps \\
+Data Bits & 8 \\
+Parity & None \\
+Stop Bits & 1 \\
+Flow Control & None \\
+Buffer Size & 256 bytes \\
+Timeout & 5 seconds \\
+Protocol & JSON over UART \\
+Line Ending & LF (\\n) \\
+Encoding & UTF-8 \\
+\hline
+\end{tabular}
+\label{tab:serial}
+\end{table}>
+
+\subsection{WiFi Communication Parameters}
+
+\begin{table}[H]
+\centering
+\caption{WiFi Communication Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Protocol & IEEE 802.11n \\
+Frequency & 2.4 GHz \\
+Security & WPA2-PSK \\
+DHCP & Enabled \\
+IP Range & 192.168.1.0/24 \\
+Default Gateway & 192.168.1.1 \\
+DNS & Automatic \\
+Connection Timeout & 30 seconds \\
+Reconnection Attempts & 5 \\
+Keep-alive Interval & 30 seconds \\
+\hline
+\end{tabular}
+\label{tab:wifi}
+\end{table}>
+
+\subsection{WebSocket Communication}
+
+\begin{table}[H]
+\centering
+\caption{WebSocket Communication Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Protocol & WebSocket (RFC 6455) \\
+Port & 8765 \\
+Host & 0.0.0.0 (all interfaces) \\
+Message Format & JSON \\
+Max Message Size & 1MB \\
+Ping Interval & 20 seconds \\
+Pong Timeout & 10 seconds \\
+Connection Limit & 10 concurrent \\
+Compression & Per-message deflate \\
+Subprotocol & None \\
+\hline
+\end{tabular}
+\label{tab:websocket}
+\end{table}>
+
+\section{Safety and Compliance}
+
+\subsection{Electrical Safety}
+
+\begin{table}[H]
+\centering
+\caption{Electrical Safety Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Safety Feature} & \textbf{Specification} \\
+\hline
+Operating Voltage & Extra Low Voltage (<50V DC) \\
+Insulation & Class II double insulation \\
+Ground Protection & Not required (battery operated) \\
+Overcurrent Protection & Fuses in motor circuits \\
+Overvoltage Protection & Zener diode regulation \\
+Short Circuit Protection & Current limiting resistors \\
+Thermal Protection & Temperature monitoring \\
+Emergency Stop & Manual disconnect switch \\
+Battery Protection & Built-in BMS \\
+Connector Safety & Keyed connectors, strain relief \\
+\hline
+\end{tabular}
+\label{tab:electrical_safety}
+\end{table}>
+
+\subsection{Mechanical Safety}
+
+\begin{table}[H]
+\centering
+\caption{Mechanical Safety Specifications}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Safety Feature} & \textbf{Specification} \\
+\hline
+Edge Treatment & All edges rounded, >2mm radius \\
+Material Safety & Non-toxic, child-safe materials \\
+Small Parts & No parts <15mm diameter \\
+Impact Resistance & Withstands 1m drop test \\
+Pinch Points & No accessible pinch points \\
+Sharp Edges & All sharp edges eliminated \\
+Weight Limits & <1kg total system weight \\
+Stability & Low center of gravity design \\
+Speed Limiting & Maximum 0.5 m/s \\
+Emergency Stop & Immediate motor shutoff \\
+\hline
+\end{tabular}>
+\label{tab:mechanical_safety}
+\end{table}>
+
+\section{Maintenance and Calibration}
+
+\subsection{Routine Maintenance Schedule}
+
+\begin{table}[H]
+\centering
+\caption{Maintenance Schedule}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Component} & \textbf{Frequency} & \textbf{Procedure} \\
+\hline
+Battery & Weekly & Check voltage, clean terminals \\
+Motors & Monthly & Clean contacts, check mounting \\
+Sensors & Monthly & Clean lenses, verify calibration \\
+Camera & Weekly & Clean lens, check focus \\
+Grid Board & Daily & Clean surface, check markings \\
+Blocks & Weekly & Clean surfaces, check text clarity \\
+Connections & Monthly & Check all connectors, cables \\
+Software & As needed & Update firmware, restart system \\
+Calibration & Monthly & Gyroscope, camera alignment \\
+Backup & Weekly & System configuration, programs \\
+\hline
+\end{tabular}
+\label{tab:maintenance}
+\end{table}>
+
+\subsection{Calibration Procedures}
+
+\begin{table}[H]
+\centering
+\caption{Calibration Procedures}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{System} & \textbf{Frequency} & \textbf{Procedure} \\
+\hline
+Gyroscope & Monthly & Place level, run calibration command \\
+Camera & Setup/Monthly & Adjust grid corners, verify alignment \\
+Motors & As needed & Measure distances, adjust scaling \\
+Battery & Weekly & Measure voltage, update thresholds \\
+Sensors & Monthly & Verify reading accuracy, clean \\
+Grid Mapping & Setup & Verify corner detection, cell mapping \\
+Network & Setup & Configure IP addresses, test connectivity \\
+OCR Engine & As needed & Update confidence thresholds \\
+\hline
+\end{tabular}
+\label{tab:calibration}
+\end{table}

@@ -12,8 +12,12 @@
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{listings}
-\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tocloft}
+
+% Set line spacing
+\onehalfspacing
 
 % Code listing settings
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -41,37 +45,83 @@
 }
 \lstset{style=mystyle}
 
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
+
 % Document Info
 \title{
     \includegraphics[height=5cm]{assets/NNU_Logo.png} \\[1cm]
     \includegraphics[height=2.5cm]{assets/Tinker_Blocks_Logo.png} \\[1cm]
-    TinkerBlocks: Code, build, and drive!
+    TinkerBlocks: Code, build, and drive! \\
+    \large An Educational Tool for Teaching Programming Concepts Through Physical Blocks
 }
 \author{
     Amr Badran \\
     Izzat Alsharif
     \\\\
-    \textbf{Supervisor:} Dr. Ashraf Armoush
+    \textbf{Supervisor:} Dr. Ashraf Armoush \\[0.5cm]
+    \textbf{Department:} Computer Engineering \\
+    \textbf{Faculty:} Engineering and Information Technology \\
+    \textbf{University:} An-Najah National University
 }
 \date{June 10, 2025}
 
 \begin{document}
 
 % Front matter
+\pagenumbering{roman}
 \maketitle
-\tableofcontents
-\listoffigures
+
+% Certificate page
+%\input{sections/certifcate}
+%\newpage
+
+% Acknowledgment
+\input{sections/acknowledgement}
+\newpage
 
 % Abstract
-\begin{abstract}
+\input{sections/abstract}
+\newpage
 
-\end{abstract}
+% Table of contents
+\tableofcontents
+\newpage
 
+% List of figures
+\listoffigures
+\newpage
 
+% List of tables
+\listoftables
+\newpage
+
+% Main content - switch to arabic numbering
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Chapters
+\input{sections/introduction}
+\input{sections/literature_review}
+\input{sections/system_design}
+\input{sections/implementation}
+%\input{sections/testing_validation}
+%\input{sections/results_discussion}
+\input{sections/conclusion}
+
+% Appendices
+\appendix
+\input{sections/appendix_a}
+%\input{sections/appendix_b}
+%\input{sections/appendix_c}
+
+% Bibliography
 \bibliographystyle{IEEEtran}
 \renewcommand{\bibname}{References}
-
 \bibliography{references}
-
 
 \end{document}

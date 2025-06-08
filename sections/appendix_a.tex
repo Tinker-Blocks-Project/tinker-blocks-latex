@@ -1,0 +1,422 @@
+\chapter{API DOCUMENTATION AND COMMAND REFERENCE}
+
+\section{Arduino Serial API}
+
+The Arduino firmware exposes a comprehensive serial API for controlling the robotic car. All commands follow the format: \texttt{command:\{"param1":"value1","param2":value2\}}
+
+\subsection{Movement Commands}
+
+\subsubsection{Move Command}
+
+\begin{lstlisting}[language=json,caption=Move Command Examples]
+// Move forward 20cm at speed 100
+move:{"speed":100,"distance":20}
+
+// Move backward for 1 second at speed 150
+move:{"speed":-150,"timeMs":1000}
+
+// Move 30cm in 2 seconds (speed calculated automatically)
+move:{"distance":30,"timeMs":2000}
+
+// Move without obstacle checking
+move:{"speed":100,"distance":20,"checkUltrasonic":false}
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{speed} (int): Motor speed (-255 to 255, negative for backward)
+    \item \texttt{distance} (float): Distance in centimeters
+    \item \texttt{timeMs} (unsigned long): Time in milliseconds
+    \item \texttt{checkUltrasonic} (bool): Enable obstacle detection (default: true)
+    \item \texttt{enableYawCorrection} (bool): Use gyro correction (default: true)
+\end{itemize}
+
+\textbf{Success Response:}
+\begin{lstlisting}[language=json]
+{
+  "success": true,
+  "success_result": "{\"distance_traveled\":20.00,\"time_taken\":784,\"final_yaw\":0.32}"
+}
+\end{lstlisting}
+
+\textbf{Failure Response:}
+\begin{lstlisting}[language=json]
+{
+  "success": false,
+  "failure_reason": "Obstacle detected at 12.45cm"
+}
+\end{lstlisting}
+
+\subsubsection{Rotation Command}
+
+\begin{lstlisting}[language=json,caption=Rotation Command Examples]
+// Turn left 90 degrees
+rotate:{"angle":90,"speed":100}
+
+// Turn right 45 degrees
+rotate:{"angle":-45,"speed":80}
+
+// Rotate to absolute heading (North = 0 degrees)
+rotate:{"angle":0,"speed":100,"absolute":true}
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{angle} (float): Rotation angle in degrees (positive = left/CCW, negative = right/CW)
+    \item \texttt{speed} (int): Rotation speed (1-255, default: 100)
+    \item \texttt{absolute} (bool): Absolute vs relative rotation (default: false)
+\end{itemize}
+
+\subsection{Sensor Commands}
+
+\subsubsection{Ultrasonic Sensor}
+
+\begin{lstlisting}[language=json,caption=Sensor Command Examples]
+// Get distance reading
+sensor:{"action":"distance"}
+
+// Check for obstacles within 15cm
+sensor:{"action":"obstacle","threshold":15}
+\end{lstlisting}
+
+\subsubsection{Gyroscope Commands}
+
+\begin{lstlisting}[language=json,caption=Gyroscope Command Examples]
+// Calibrate gyroscope
+gyro:{"action":"calibrate"}
+
+// Get current sensor data
+gyro:{"action":"data"}
+
+// Get current yaw angle
+gyro:{"action":"yaw"}
+
+// Set reference orientation
+gyro:{"action":"reference"}
+\end{lstlisting}
+
+\subsection{Pen Control Commands}
+
+\begin{lstlisting}[language=json,caption=Pen Control Examples]
+// Lift pen up
+pen:{"action":"up"}
+
+// Put pen down
+pen:{"action":"down"}
+
+// Set custom pen position
+pen:{"action":"position","position":45}
+\end{lstlisting}
+
+\section{ESP32 HTTP API}
+
+The ESP32 serves as a WiFi bridge, exposing HTTP endpoints that translate to Arduino serial commands.
+
+\subsection{HTTP Endpoints}
+
+\begin{lstlisting}[language=bash,caption=HTTP API Endpoints]
+# Movement control
+POST /api/move
+Content-Type: application/json
+{"speed": 100, "distance": 20}
+
+# Rotation control
+POST /api/rotate
+Content-Type: application/json
+{"angle": 90, "speed": 100}
+
+# Pen control
+POST /api/pen
+Content-Type: application/json
+{"action": "up"}
+
+# Sensor readings
+POST /api/sensor
+Content-Type: application/json
+{"action": "distance"}
+
+# Gyroscope control
+POST /api/gyro
+Content-Type: application/json
+{"action": "calibrate"}
+
+# IR sensor readings
+POST /api/ir
+Content-Type: application/json
+{"action": "black_obstacle"}
+\end{lstlisting}
+
+\section{WebSocket Communication Protocol}
+
+The Raspberry Pi control system uses WebSocket communication for real-time control and monitoring.
+
+\subsection{Client Commands}
+
+\begin{lstlisting}[language=json,caption=WebSocket Client Commands]
+// Run complete OCR to engine pipeline
+{
+  "command": "run",
+  "params": {
+    "workflow": "full"
+  }
+}
+
+// Run OCR only
+{
+  "command": "run",
+  "params": {
+    "workflow": "ocr_grid"
+  }
+}
+
+// Run OCR with automatic engine execution
+{
+  "command": "run",
+  "params": {
+    "workflow": "ocr_grid",
+    "chain_engine": true
+  }
+}
+
+// Run engine with custom grid
+{
+  "command": "run",
+  "params": {
+    "workflow": "engine",
+    "grid": [
+      ["MOVE", "5"],
+      ["TURN", "RIGHT"],
+      ["LOOP", "3"],
+      ["", "MOVE", "2"],
+      ["", "TURN", "LEFT"]
+    ]
+  }
+}
+
+// Stop current process
+{
+  "command": "stop"
+}
+\end{lstlisting}
+
+\subsection{Server Responses}
+
+\begin{lstlisting}[language=json,caption=WebSocket Server Responses]
+// Status update
+{
+  "type": "status",
+  "message": "Processing image..."
+}
+
+// Progress update
+{
+  "type": "progress",
+  "percentage": 45,
+  "message": "Running OCR..."
+}
+
+// Completion notification
+{
+  "type": "complete",
+  "result": "Success",
+  "data": {
+    "execution_time": 2.3,
+    "commands_executed": 15
+  }
+}
+
+// Error notification
+{
+  "type": "error",
+  "message": "Block recognition failed",
+  "details": "Insufficient lighting detected"
+}
+\end{lstlisting}
+
+\section{Programming Language Reference}
+
+\subsection{Movement Commands}
+
+\begin{lstlisting}[caption=Movement Command Examples]
+// Basic movement
+MOVE                    // Move forward 1 unit
+MOVE | 5               // Move forward 5 units
+MOVE | -3              // Move backward 3 units
+MOVE | X               // Move forward X units (variable)
+
+// Conditional movement
+MOVE | WHILE | X < 10  // Move while X is less than 10
+MOVE | WHILE | DISTANCE > 30  // Move while distance > 30cm
+
+// Turn commands
+TURN | LEFT                      // Turn left 90°
+TURN | RIGHT                     // Turn right 90°
+TURN | 45                        // Turn right 45°
+TURN | LEFT | 30                 // Turn left 30°
+TURN | RIGHT | WHILE | X < 5     // Turn right while X < 5
+\end{lstlisting}
+
+\subsection{Control Flow Examples}
+
+\begin{lstlisting}[caption=Control Flow Examples]
+// Simple loop
+LOOP | 5
+    MOVE | 2
+    TURN | RIGHT
+
+// Conditional loop
+LOOP | WHILE | X < 10
+    MOVE | 1
+    SET | X | X + 1
+
+// Infinite loop with condition
+LOOP | TRUE
+    MOVE | 1
+    IF | OBSTACLE
+        TURN | RIGHT
+
+// Conditional statements
+IF | DISTANCE < 30
+    TURN | LEFT
+ELSE
+    MOVE | 5
+
+// Nested conditions
+IF | X > 10
+    IF | Y < 5
+        MOVE | X
+    ELSE
+        TURN | RIGHT
+ELSE
+    SET | X | 0
+\end{lstlisting}
+
+\subsection{Variable Operations}
+
+\begin{lstlisting}[caption=Variable Operation Examples]
+// Basic assignment
+SET | X | 5
+SET | SPEED | 10
+SET | Y | DISTANCE
+SET | FLAG | TRUE
+
+// Arithmetic operations
+SET | Z | X + 2
+SET | COUNT | COUNT + 1
+SET | RESULT | X * Y / 2
+SET | AVERAGE | (X + Y) / 2
+
+// Boolean operations
+SET | FOUND | DISTANCE < 30
+SET | SAFE | NOT OBSTACLE
+SET | READY | X > 0 AND Y > 0
+SET | CONTINUE | DISTANCE > 10 OR COUNT < 5
+\end{lstlisting}
+
+\subsection{Sensor Integration}
+
+\begin{lstlisting}[caption=Sensor Integration Examples]
+// Using sensor values in conditions
+IF | DISTANCE < 20
+    TURN | RIGHT
+
+IF | OBSTACLE
+    MOVE | -2
+    TURN | 180
+
+IF | BLACK_DETECTED
+    MOVE | 1
+ELSE
+    TURN | LEFT
+
+// Sensor values in expressions
+SET | SAFE_DISTANCE | DISTANCE + 5
+SET | TOO_CLOSE | DISTANCE < 15
+
+// Waiting for sensor conditions
+WAIT | WHILE | DISTANCE < 20
+WAIT | WHILE | BLACK_DETECTED
+\end{lstlisting}
+
+\subsection{Drawing Commands}
+
+\begin{lstlisting}[caption=Drawing Command Examples]
+// Draw a square
+SET | SIDE | 3
+PEN_DOWN
+LOOP | 4
+    MOVE | SIDE
+    TURN | RIGHT
+PEN_UP
+
+// Draw with conditional pen control
+LOOP | 10
+    IF | X % 2 = 0
+        PEN_DOWN
+    ELSE
+        PEN_UP
+    MOVE | 2
+    SET | X | X + 1
+\end{lstlisting}
+
+\section{Error Codes and Troubleshooting}
+
+\subsection{Common Error Codes}
+
+\begin{lstlisting}[caption=Error Code Reference]
+// Arduino Serial API Errors
+"Invalid speed. Must be between 1 and 255."
+"Obstacle detected at 12.45cm"
+"Missing or invalid 'position' parameter for pen position"
+"Unknown gyro action: invalid_action"
+"Unknown sensor action: invalid_action"
+
+// Vision Processing Errors
+"Block recognition failed - insufficient lighting"
+"Grid detection failed - corners not found"
+"OCR processing timeout"
+"Invalid grid dimensions"
+
+// Engine Execution Errors
+"Unknown command: INVALID_COMMAND"
+"Maximum steps exceeded (1000)"
+"Variable 'X' not defined"
+"Division by zero in expression"
+"ELSE without matching IF"
+\end{lstlisting}
+
+\subsection{Troubleshooting Guide}
+
+\begin{lstlisting}[caption=Common Solutions]
+// Poor block recognition
+Problem: Low recognition accuracy
+Solution: 
+- Ensure lighting > 300 lux
+- Check camera focus and positioning
+- Verify block text clarity
+- Clean camera lens
+
+// Communication timeouts
+Problem: API timeouts
+Solution:
+- Check WiFi connection strength
+- Verify ESP32 power supply
+- Restart system components
+- Check serial cable connections
+
+// Movement inaccuracy
+Problem: Car movement imprecise
+Solution:
+- Calibrate gyroscope sensor
+- Check battery voltage level
+- Verify wheel alignment
+- Test on smooth surface
+
+// Program execution errors
+Problem: Commands not executing
+Solution:
+- Verify grid syntax correctness
+- Check indentation alignment
+- Validate parameter ranges
+- Review variable definitions
+\end{lstlisting}
