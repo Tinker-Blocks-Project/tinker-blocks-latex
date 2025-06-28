@@ -99,6 +99,13 @@ The programming grid serves as the interface for arranging programming blocks an
     \item \textbf{Portability}: Lightweight design for classroom use
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{assets/board.jpg}
+    \caption{Simple Program on Board}
+    \label{fig:programming grid}
+\end{figure}
+
 \subsubsection{Camera System (OAK-D)}
 \begin{itemize}
     \item \textbf{Position}: Overhead mounting for full grid visibility
@@ -220,6 +227,26 @@ The system provides intuitive physical interaction through:
     \item \textbf{Display Screen}: a Mobile Screen with App running on it.
 \end{itemize}
 
+\subsection{Mobile Application Interface}
+
+The TinkerBlocks mobile application provides a modern, intuitive interface for system interaction and monitoring.
+
+\subsubsection{Application Architecture}
+\begin{itemize}
+    \item \textbf{Framework}: React Native Expo for cross-platform compatibility
+    \item \textbf{Platform Support}: iOS and Android devices with responsive design
+    \item \textbf{Communication}: WebSocket-powered real-time communication with Raspberry PI.
+\end{itemize}
+
+\subsubsection{User Interface Components}
+\begin{itemize}
+    \item \textbf{Welcome Screen}: Animated logo with modern design and call-to-action
+    \item \textbf{Chat Interface}: Real-time messaging with Websocket Server on Raspberry PI.
+    \item \textbf{Connection Status}: Live visual indicators with pulsing animations
+    \item \textbf{Action Controls}: Dedicated Run/Stop buttons for program execution
+    \item \textbf{Message Display}: Markdown support for rich text rendering of responses
+\end{itemize}
+
 \subsection{Digital Interface}
 
 \subsubsection{Monitoring}
@@ -255,7 +282,7 @@ The software architecture enables easy extension:
     \item \textbf{Command Registry}: Plugin-style command addition
     \item \textbf{Workflow Framework}: Generic execution patterns
     \item \textbf{Protocol Abstraction}: Support for different communication methods
-    \item \textbf{ِAI}: Support for AI coding like Github-copilot
+    \item \textbf{AI}: Support for AI coding like Github-copilot
 \end{itemize}
 
 \section{Performance Requirements}

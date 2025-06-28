@@ -42,6 +42,16 @@ The final phase integrated all hardware components:
     \item Motor control and movement algorithms
 \end{itemize}
 
+
+\subsubsection{Phase 5: Mobile Application Development}
+The final phase implemented the user interface and mobile application:
+\begin{itemize}
+    \item React Native Expo application development
+    \item WebSocket communication integration
+    \item Modern UI design with smooth animations
+    \item Cross-platform compatibility testing
+\end{itemize}
+
 \section{Core Module Implementation}
 
 \subsection{WebSocket Server}
@@ -260,10 +270,9 @@ Each class encapsulates specific functionality while providing clean interfaces 
 Advanced movement control ensures precision and reliability:
 
 \begin{itemize}
-    \item \textbf{Differential Steering}: Tank-style movement with independent wheel control
     \item \textbf{Yaw Correction}: Gyroscope-based straight-line movement
     \item \textbf{PID Control}: Precise rotation with feedback control
-    \item \textbf{Obstacle Avoidance}: Real-time sensor integration
+    \item \textbf{Obstacle Avoidance}: Real-time UltraSonic sensor integration
 \end{itemize}
 
 The movement algorithms balance precision with smooth operation, using sensor feedback for continuous correction.
@@ -275,7 +284,7 @@ Multiple sensors provide comprehensive environmental awareness:
 \begin{itemize}
     \item \textbf{MPU-6050}: 6-axis IMU for orientation and acceleration
     \item \textbf{HC-SR04}: Ultrasonic ranging for obstacle detection
-    \item \textbf{IR Sensors}: Line detection for path following
+    \item \textbf{IR Sensors}: Black Circle detection for reaching it or not.
     \item \textbf{Servo Feedback}: Pen position monitoring
 \end{itemize}
 
