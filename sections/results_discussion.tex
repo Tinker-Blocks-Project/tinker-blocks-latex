@@ -36,49 +36,70 @@ From a technical perspective, TinkerBlocks contributes to the field through:
 
 \section{Challenges and Limitations}
 
-While TinkerBlocks successfully achieves its primary objectives, several challenges and limitations have been identified:
+While TinkerBlocks successfully achieves its primary objectives, three main limitations have been identified:
 
-\subsection{Technical Challenges}
+\subsection{Fixed Grid Size}
 
-\subsubsection{Computer Vision Constraints}
+The system uses a fixed 16x10 board, which limits how long and complex programs can be:
+
 \begin{itemize}
-    \item \textbf{Lighting Sensitivity}: OCR performance depends on consistent lighting conditions
-    \item \textbf{Camera Positioning}: Requires proper camera setup and calibration for optimal performance
-    \item \textbf{Processing Time}: Complete vision pipeline requires several seconds for complex grids
+    \item \textbf{Program Complexity}: Larger algorithms requiring many blocks cannot fit on the current grid
+    \item \textbf{Advanced Concepts}: Complex programming constructs like nested loops become spatially constrained
+    \item \textbf{Creative Projects}: Ambitious student projects may exceed the available programming space
 \end{itemize}
 
-\subsubsection{Physical Limitations}
+\subsection{Slow Block Recognition}
+
+On average, the system takes about 7 seconds to recognize blocks, slowing down learning and testing:
+
 \begin{itemize}
-    \item \textbf{Grid Size Constraints}: 16x10 grid limits maximum program complexity
-    \item \textbf{Surface Requirements}: Car operation requires smooth, flat surfaces for optimal performance
-    \item \textbf{Block Management}: Physical blocks can be lost or damaged, affecting system operation
-    \item \textbf{Setup Complexity}: Initial system setup is not as intuitive and easy for students to set up as it should be
+    \item \textbf{Learning Pace}: Students must wait between program modifications and execution
+    \item \textbf{Iterative Development}: Rapid prototyping and testing cycles are hindered by processing delays
+\end{itemize}
+
+\subsection{Dependence on External Camera}
+
+The system needs a calibrated OAK-D overhead camera, making it dependent on specific hardware:
+
+\begin{itemize}
+    \item \textbf{Setup Requirements}: Proper camera positioning and calibration needed for each deployment
+    \item \textbf{Hardware Dependency}: System cannot function without the specific camera model
+    \item \textbf{Portability Issues}: Moving the system requires recalibration and careful setup
 \end{itemize}
 
 \section{Future Work and Improvements}
 
-Several areas for future development have been identified to address current limitations and expand system capabilities:
+Based on the current system's capabilities and identified limitations, three key areas for future development have been prioritized:
 
-\subsection{Technical Enhancements}
+\subsection{Advanced Sensor Integration}
 
-\subsubsection{Computer Vision Improvements}
+Integrate sophisticated sensors for richer environmental interaction, enabling complex robot behaviors and data collection:
+
 \begin{itemize}
-    \item \textbf{Adaptive Lighting}: Develop algorithms that automatically adjust to varying lighting conditions
+    \item \textbf{Environmental Sensors}: Temperature, humidity, and light sensors for environmental programming challenges
+    \item \textbf{Advanced Vision}: Color recognition and object detection capabilities for more complex interactions
+    \item \textbf{Audio Integration}: Microphone and speaker systems for sound-based programming and feedback
+    \item \textbf{Proximity Arrays}: Multiple ultrasonic sensors for detailed spatial awareness and navigation
 \end{itemize}
 
-\subsubsection{System Expansion}
+\subsection{Dual Robot Control}
+
+Add control for a second robot, allowing them to work together and perform more complex tasks in sync:
+
 \begin{itemize}
-    \item \textbf{Larger Grids}: Expandable grid sizes for more complex programming projects
-    \item \textbf{Additional Sensors}: Integration of more sensor types for enhanced interaction capabilities
-    \item \textbf{Advanced Actuators}: Additional output devices such as lights, or displays
+    \item \textbf{Collaborative Programming}: Support for programming multiple robots simultaneously with coordinated actions
+    \item \textbf{Communication Protocols}: Robot-to-robot communication for synchronized movements and shared tasks
+    \item \textbf{Competitive Scenarios}: Enable programming challenges where robots interact or compete
+    \item \textbf{Distributed Problem Solving}: Complex tasks that require multiple robots working together
 \end{itemize}
 
-\subsubsection{Advanced Features}
+\subsection{Enhanced Debugging Tools}
+
+Introduce visual debuggers and step-by-step execution to simplify program troubleshooting and accelerate learning:
+
 \begin{itemize}
-    \item \textbf{Programming Constructs}: Support for functions, recursion, and data structures
-    \item \textbf{Debugging Tools}: Visual debugging interfaces to help students troubleshoot programs
-    \item \textbf{Program Validation}: Pre-execution checking to identify potential program errors
-    \item \textbf{Progress Tracking}: Individual student progress monitoring and adaptive learning
+    \item \textbf{Step-by-Step Mode}: Ability to pause and step through programs one command at a time
+    \item \textbf{Error Highlighting}: Visual indication of problematic blocks or logical errors in the program
 \end{itemize}
 
 \section{Final Reflection}
